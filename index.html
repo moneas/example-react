@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ujicoba ReactJS</title>
+
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+
+  
+    
+
+
+<script language="JavaScript 1.7" type="text/babel">
+
+var Toolbars = React.createClass({
+
+    getInitialState: function(){
+        return { focused: 0 };
+    },
+
+    clicked: function(index){
+        this.setState({focused: index});
+    },
+
+    render: function() {
+
+        var self = this;
+
+        return (
+            <div>
+                <ul>{ this.props.items.map(function(m, index){
+        
+                    var style = '';
+        
+                    if(self.state.focused == index){
+                        style = 'focused';
+                    }
+        
+        
+                    return <li className={style} onClick={self.clicked.bind(self, index)}>{m}</li>;
+        
+                }) }
+                        
+                </ul>
+                
+                <p>Menu: {this.props.items[this.state.focused]}</p>
+            </div>
+        );
+
+    }
+});
+
+ReactDOM.render(
+    <Toolbars items={ ['Satu', 'Dua', 'Tiga', 'Empat'] } />,
+    document.getElementById('body')
+);
+</script>
+</head>
+<body>
+	<div id="body"> 
+	</div>
+</body>
+</html>
+
